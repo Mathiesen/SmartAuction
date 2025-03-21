@@ -1,0 +1,10 @@
+<div *ngIf="(timeLeft$ | async) as time; else sorry">
+  <span>{{ time.daysToDday }}</span> Day(s)
+  <span>{{ time.hoursToDday }}</span>Hrs
+  <span>{{ time.minutesToDday }}</span>Min
+  <span>{{ time.secondsToDday }}</span>S
+</div>
+
+<ng-template #sorry>
+  Sorry, something went wrong...
+</ng-template>

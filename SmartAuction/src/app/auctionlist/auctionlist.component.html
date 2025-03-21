@@ -1,0 +1,11 @@
+<div>
+  <label>
+    <input type="checkbox" [(ngModel)]="showDone"
+           (change)="loadAuctions()">
+    Show Done Auctions
+  </label>
+</div>
+
+<div *ngFor="let auction of auctions">
+  <app-auctionitem [auction]="auction"></app-auctionitem>
+</div>

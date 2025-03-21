@@ -1,0 +1,24 @@
+<div>
+  <h2>Create Auction</h2>
+  <form (ngSubmit)="createAuction()">
+    <label for="name">Name:</label>
+    <input id="name" [(ngModel)]="auction.name" type="text" name="name">
+    <br>
+    <label for="desc">Description:</label>
+    <input id="desc" [(ngModel)]="auction.description" type="text" name="description">
+    <br>
+    <label for="cond">Condition:</label>
+    <input id="cond" [(ngModel)]="auction.condition" type="text" name="condition">
+    <br>
+    <label for="start">Start:</label>
+    <input id="start" [(ngModel)]="auction.start" type="datetime-local" name="start">
+    <br>
+    <label for="end">End:</label>
+    <input id="end" [(ngModel)]="auction.end" type="datetime-local" name="end">
+    <br>
+    <label for="estimate">Estimate:</label>
+    <input id="estimate" [(ngModel)]="auction.estimate" type="text" name="estimate">
+    <br>
+    <button type="submit">Create</button>
+  </form>
+</div>

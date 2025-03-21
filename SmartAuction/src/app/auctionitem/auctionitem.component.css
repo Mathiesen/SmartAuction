@@ -1,0 +1,10 @@
+.auction-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.example-card {
+  max-width: 500px;
+  margin-bottom: 8px;
+}

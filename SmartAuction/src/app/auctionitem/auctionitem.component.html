@@ -1,0 +1,35 @@
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>{{auction.name}}</mat-card-title>
+      <img mat-card-sm-image src="https://imgs.search.brave.com/nSPk7JGJMSdOBe2mf4QIYFD7Uc7v5rd-jh7DJFVX5io/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zcG9y/a2VkLmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvMjAyMy8wMy9M/SVNUSUNMRV9FVkVS/WVRISU5HLVlPVS1O/RUVELVRPLUtOT1ct/QUJPVVQtQ1JZU1RB/TC1QRVBTSV9IRUFE/RVItOTY2eDU0NC5q/cGc">
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Address: {{ auction.auctionAddr }}</p>
+    <p>Description: {{ auction.description }}</p>
+    <p>Created: {{ auction.startDate | date:'short'}}</p>
+    <p>Time left: <app-timer [doneDate]="auction.endDate" [itemAddr]="auction.auctionAddr"></app-timer></p>
+    <br>
+    <br>
+    <mat-form-field>
+      <mat-label>Bid amount</mat-label>
+      <input [(ngModel)]="bidAmount" matInput type="number">
+    </mat-form-field>
+    <button mat-flat-button (click)="placeBid()">Bid</button>
+    <br>
+    <br>
+    <mat-slide-toggle [(ngModel)]="showBids">{{ showBids ? 'Hide' : 'Show'}} Bids ({{auction.bids.length}})</mat-slide-toggle>
+        <div *ngIf="showBids">
+          <ul>
+            <li *ngFor="let bid of auction.bids">
+              Created: {{ bid.created | date: 'short' }} <br>
+              Bidder: {{ bid.bidder }}<br>
+              Amount: {{ bid.amount }}
+              <br>
+              <br>
+            </li>
+          </ul>
+        </div>
+  </mat-card-content>
+</mat-card>
