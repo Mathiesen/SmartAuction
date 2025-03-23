@@ -106,15 +106,9 @@ const contractABI = [
       },
       {
         "indexed": false,
-        "internalType": "address",
-        "name": "addr",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "value",
-        "type": "uint256"
+        "internalType": "bool",
+        "name": "finalized",
+        "type": "bool"
       }
     ],
     "name": "DebugLog",

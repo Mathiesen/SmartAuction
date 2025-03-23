@@ -10,7 +10,7 @@ import {Bid} from "./models/Bid";
 export class Web3ReadService {
   private nodeUrl = 'http://127.0.0.1:8545';
   private web3Read!: Web3;
-  private auctionAddress = '0xc6c283A0E6dd101704aFC7f1B8252EC1BbA2F049';
+  private auctionAddress = '0xAdd9aE5D6874E79fd1428972D44c427cDef81FfC';
   private contract!: any;
 
   constructor() {

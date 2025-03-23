@@ -12,7 +12,7 @@ contract AuctionHouse {
   event AuctionItemCreated(address indexed auctionItemAddress, address seller);
   event BidPlaced(address indexed itemId, address indexed bidder, uint256 amount);
   event AuctionFinalized(address indexed itemAddr, address indexed seller, address indexed highBidder, uint winningBid, uint payout);
-  event DebugLog(string message, address addr, uint value);
+  event DebugLog(string message, bool finalized);
 
   constructor()  {
   }
