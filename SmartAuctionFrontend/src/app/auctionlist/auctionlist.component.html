@@ -1,11 +1,20 @@
-<div>
-  <label>
-    <input type="checkbox" [(ngModel)]="showDone"
-           (change)="loadAuctions()">
-    Show Done Auctions
-  </label>
-</div>
+<div class="auction-list-container">
+    <div class="auction-header">
+        <h1>Available Auctions</h1>
+        <mat-slide-toggle color="primary" [(ngModel)]="showDone" (change)="loadAuctions()">
+            {{ showDone ? 'Showing All Auctions' : 'Showing Active Auctions Only' }}
+        </mat-slide-toggle>
+    </div>
 
-<div *ngFor="let auction of auctions">
-  <app-auctionitem [auction]="auction"></app-auctionitem>
+    <div class="auctions-grid">
+        <div *ngFor="let auction of auctions">
+            <app-auctionitem [auction]="auction"></app-auctionitem>
+        </div>
+    </div>
+
+    <div *ngIf="auctions.length === 0" class="no-auctions">
+        <mat-icon>gavel</mat-icon>
+        <p>No auctions available. Create one to get started!</p>
+        <button mat-raised-button color="primary" routerLink="/createAuction">Create Auction</button>
+    </div>
 </div>

@@ -1,35 +1,61 @@
-<mat-card class="example-card" appearance="outlined">
-  <mat-card-header>
-    <mat-card-title-group>
-      <mat-card-title>{{auction.name}}</mat-card-title>
-      <img mat-card-sm-image src="https://imgs.search.brave.com/nSPk7JGJMSdOBe2mf4QIYFD7Uc7v5rd-jh7DJFVX5io/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zcG9y/a2VkLmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvMjAyMy8wMy9M/SVNUSUNMRV9FVkVS/WVRISU5HLVlPVS1O/RUVELVRPLUtOT1ct/QUJPVVQtQ1JZU1RB/TC1QRVBTSV9IRUFE/RVItOTY2eDU0NC5q/cGc">
-    </mat-card-title-group>
-  </mat-card-header>
-  <mat-card-content>
-    <p>Address: {{ auction.auctionAddr }}</p>
-    <p>Description: {{ auction.description }}</p>
-    <p>Created: {{ auction.startDate | date:'short'}}</p>
-    <p>Time left: <app-timer [doneDate]="auction.endDate" [itemAddr]="auction.auctionAddr"></app-timer></p>
-    <br>
-    <br>
-    <mat-form-field>
-      <mat-label>Bid amount</mat-label>
-      <input [(ngModel)]="bidAmount" matInput type="number">
-    </mat-form-field>
-    <button mat-flat-button (click)="placeBid()">Bid</button>
-    <br>
-    <br>
-    <mat-slide-toggle [(ngModel)]="showBids">{{ showBids ? 'Hide' : 'Show'}} Bids ({{auction.bids.length}})</mat-slide-toggle>
-        <div *ngIf="showBids">
-          <ul>
-            <li *ngFor="let bid of auction.bids">
-              Created: {{ bid.created | date: 'short' }} <br>
-              Bidder: {{ bid.bidder }}<br>
-              Amount: {{ bid.amount }}
-              <br>
-              <br>
-            </li>
-          </ul>
+<mat-card class="auction-card" appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>{{auction.name}}</mat-card-title>
+        <mat-card-subtitle>{{auction.condition}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <img mat-card-image src="https://imgs.search.brave.com/nSPk7JGJMSdOBe2mf4QIYFD7Uc7v5rd-jh7DJFVX5io/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zcG9y/a2VkLmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvMjAyMy8wMy9M/SVNUSUNMRV9FVkVS/WVRISU5HLVlPVS1O/RUVELVRPLUtOT1ct/QUJPVVQtQ1JZU1RB/TC1QRVBTSV9IRUFE/RVItOTY2eDU0NC5q/cGc" alt="Auction item image">
+
+    <mat-card-content>
+        <div class="auction-details">
+            <div class="auction-info">
+                <p class="description"><strong>Description:</strong> {{auction.description}}</p>
+                <p><strong>Start Date:</strong> {{auction.startDate | date:'medium'}}</p>
+                <p><strong>Time Remaining:</strong></p>
+                <div class="timer-container">
+                    <app-timer [doneDate]="auction.endDate" [itemAddr]="auction.auctionAddr"></app-timer>
+                </div>
+            </div>
         </div>
-  </mat-card-content>
+
+        <mat-divider class="divider"></mat-divider>
+
+        <div class="bid-section">
+            <h3>Place Your Bid</h3>
+            <div class="bid-form">
+                <mat-form-field appearance="outline">
+                    <mat-label>Bid Amount (ETH)</mat-label>
+                    <input [(ngModel)]="bidAmount" matInput type="number" min="0.01" step="0.01">
+                    <mat-hint>Enter amount in ETH</mat-hint>
+                </mat-form-field>
+                <button mat-raised-button color="accent" (click)="placeBid()">Place Bid</button>
+            </div>
+        </div>
+
+        <mat-divider class="divider"></mat-divider>
+
+        <div class="bids-section">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Bid History ({{auction.bids.length}})
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div *ngIf="auction.bids.length > 0; else noBids">
+                    <div class="bid-item" *ngFor="let bid of auction.bids">
+                        <div>
+                            <span class="bid-amount">{{bid.amount}}</span>
+                            <span class="bid-address">by {{bid.bidder | slice:0:8}}...{{bid.bidder | slice:-6}}</span>
+                        </div>
+                        <span class="bid-date">{{bid.created | date:'short'}}</span>
+                    </div>
+                </div>
+
+                <ng-template #noBids>
+                    <p class="no-bids">No bids placed yet. Be the first to bid!</p>
+                </ng-template>
+            </mat-expansion-panel>
+        </div>
+    </mat-card-content>
 </mat-card>

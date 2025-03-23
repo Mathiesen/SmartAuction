@@ -1,0 +1,30 @@
+.timer {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.time-segment {
+    display: flex;
+    flex-direction: column;
+}
+
+.time-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #673ab7;
+}
+
+.time-label {
+    font-size: 0.8rem;
+    color: #777;
+    text-transform: uppercase;
+}
+
+.timer-expired {
+    text-align: center;
+    font-weight: bold;
+    color: #f44336;
+    font-size: 1.2rem;
+}

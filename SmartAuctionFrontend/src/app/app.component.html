@@ -1,2 +1,12 @@
-<a (click)="createAuction()">Create Auction</a>
-<router-outlet />
+<div class="app-container">
+    <mat-toolbar color="primary" class="toolbar">
+        <span class="logo">SmartAuction</span>
+        <span class="spacer"></span>
+        <button mat-button routerLink="/">View Auctions</button>
+        <button mat-button routerLink="/createAuction">Create Auction</button>
+    </mat-toolbar>
+
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

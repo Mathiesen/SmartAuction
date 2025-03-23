@@ -1,24 +1,102 @@
-<div>
-  <h2>Create Auction</h2>
-  <form (ngSubmit)="createAuction()">
-    <label for="name">Name:</label>
-    <input id="name" [(ngModel)]="auction.name" type="text" name="name">
-    <br>
-    <label for="desc">Description:</label>
-    <input id="desc" [(ngModel)]="auction.description" type="text" name="description">
-    <br>
-    <label for="cond">Condition:</label>
-    <input id="cond" [(ngModel)]="auction.condition" type="text" name="condition">
-    <br>
-    <label for="start">Start:</label>
-    <input id="start" [(ngModel)]="auction.start" type="datetime-local" name="start">
-    <br>
-    <label for="end">End:</label>
-    <input id="end" [(ngModel)]="auction.end" type="datetime-local" name="end">
-    <br>
-    <label for="estimate">Estimate:</label>
-    <input id="estimate" [(ngModel)]="auction.estimate" type="text" name="estimate">
-    <br>
-    <button type="submit">Create</button>
-  </form>
+<div class="create-auction-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Create New Auction</mat-card-title>
+            <mat-card-subtitle>Fill in the details below to list your item</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form (ngSubmit)="createAuction()" #auctionForm="ngForm">
+                <div class="form-row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Item Name</mat-label>
+                        <input matInput required [(ngModel)]="auction.name" name="name" placeholder="e.g. Vintage Watch">
+                        <mat-hint>Enter a descriptive name for your item</mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput required [(ngModel)]="auction.description" name="description"
+                                  placeholder="Provide details about your item" rows="4"></textarea>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-row two-columns">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Condition</mat-label>
+                        <mat-select required [(ngModel)]="auction.condition" name="condition">
+                            <mat-option value="New">New</mat-option>
+                            <mat-option value="Like New">Like New</mat-option>
+                            <mat-option value="Excellent">Excellent</mat-option>
+                            <mat-option value="Good">Good</mat-option>
+                            <mat-option value="Fair">Fair</mat-option>
+                            <mat-option value="Poor">Poor</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Estimated Value</mat-label>
+                        <input matInput [(ngModel)]="auction.estimate" name="estimate" placeholder="e.g. 0.5-1 ETH">
+                    </mat-form-field>
+                </div>
+
+                <!-- Start Date and Time -->
+                <div class="form-row">
+                    <div class="date-time-header">Start Date and Time</div>
+                    <div class="date-time-container">
+                        <mat-form-field appearance="outline" class="date-field">
+                            <mat-label>Date</mat-label>
+                            <input matInput [matDatepicker]="startDatePicker" required [(ngModel)]="startDateTime" name="startDate">
+                            <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                            <mat-datepicker #startDatePicker></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="time-field">
+                            <mat-label>Time</mat-label>
+                            <input matInput
+                                   [matTimepicker]="startTimePicker"
+                                   [(ngModel)]="startDateTime"
+                                   [ngModelOptions]="{updateOn: 'blur'}"
+                                   name="startTime">
+                            <mat-timepicker #startTimePicker></mat-timepicker>
+                            <mat-timepicker-toggle [for]="startTimePicker" matSuffix></mat-timepicker-toggle>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- End Date and Time -->
+                <div class="form-row">
+                    <div class="date-time-header">End Date and Time</div>
+                    <div class="date-time-container">
+                        <mat-form-field appearance="outline" class="date-field">
+                            <mat-label>Date</mat-label>
+                            <input matInput [matDatepicker]="endDatePicker" required [(ngModel)]="endDateTime" name="endDate">
+                            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                            <mat-datepicker #endDatePicker></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="time-field">
+                            <mat-label>Time</mat-label>
+                            <input matInput
+                                   [matTimepicker]="endTimePicker"
+                                   [(ngModel)]="endDateTime"
+                                   [ngModelOptions]="{updateOn: 'blur'}"
+                                   name="endTime">
+                            <mat-timepicker #endTimePicker></mat-timepicker>
+                            <mat-timepicker-toggle [for]="endTimePicker" matSuffix></mat-timepicker-toggle>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button mat-button type="button" routerLink="/">Cancel</button>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="!auctionForm.form.valid">
+                        Create Auction
+                    </button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
 </div>

@@ -1,17 +1,50 @@
-div {
-  padding: 15px;
-  border: 1px solid #ccc;
-  max-width: 400px;
-  margin: auto;
+.create-auction-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
-label {
-  font-weight: bold;
+.form-row {
+  margin-bottom: 1.5rem;
+
+  &.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
 }
 
-input {
-  margin-bottom: 10px;
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
+.date-time-header {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 8px;
+}
+
+.date-time-container {
+  display: flex;
+  gap: 16px;
+
+  .date-field {
+    flex: 3;
+  }
+
+  .time-field {
+    flex: 1;
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* Ensure the date picker overlay is visible */
+.mat-datepicker-content {
+  z-index: 1000 !important;
 }

@@ -3,15 +3,24 @@ import {Auction} from '../models/Auction';
 import {Web3Service} from '../web3.service';
 import {FormsModule} from '@angular/forms';
 import {AuctionitemComponent} from '../auctionitem/auctionitem.component';
-import {NgForOf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {Web3ReadService} from '../web3-read.service';
+import {MatSlideToggle} from "@angular/material/slide-toggle";
+import {MatIcon} from "@angular/material/icon";
+import {MatButton} from "@angular/material/button";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-auctionlist',
   imports: [
     FormsModule,
     AuctionitemComponent,
-    NgForOf
+    NgForOf,
+    MatSlideToggle,
+    MatIcon,
+    MatButton,
+    RouterLink,
+    NgIf
   ],
   templateUrl: './auctionlist.component.html',
   styleUrl: './auctionlist.component.css'

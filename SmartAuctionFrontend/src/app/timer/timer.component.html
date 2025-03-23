@@ -1,10 +1,24 @@
-<div *ngIf="(timeLeft$ | async) as time; else sorry">
-  <span>{{ time.daysToDday }}</span> Day(s)
-  <span>{{ time.hoursToDday }}</span>Hrs
-  <span>{{ time.minutesToDday }}</span>Min
-  <span>{{ time.secondsToDday }}</span>S
+<div class="timer" *ngIf="(timeLeft$ | async) as time; else expired">
+    <div class="time-segment">
+        <span class="time-value">{{ time.daysToDday }}</span>
+        <span class="time-label">Days</span>
+    </div>
+    <div class="time-segment">
+        <span class="time-value">{{ time.hoursToDday }}</span>
+        <span class="time-label">Hours</span>
+    </div>
+    <div class="time-segment">
+        <span class="time-value">{{ time.minutesToDday }}</span>
+        <span class="time-label">Mins</span>
+    </div>
+    <div class="time-segment">
+        <span class="time-value">{{ time.secondsToDday }}</span>
+        <span class="time-label">Secs</span>
+    </div>
 </div>
 
-<ng-template #sorry>
-  Sorry, something went wrong...
+<ng-template #expired>
+    <div class="timer-expired">
+        Auction Ended
+    </div>
 </ng-template>

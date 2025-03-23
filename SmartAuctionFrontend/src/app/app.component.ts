@@ -1,20 +1,18 @@
 import { Component } from '@angular/core';
-import {Router, RouterOutlet} from '@angular/router';
-import {Web3Service} from './web3.service';
-import web3 from 'web3';
+import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import {CountdownService} from './countdown.service';
+import {MatToolbar} from "@angular/material/toolbar";
+import {MatButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FormsModule],
+  imports: [RouterOutlet, FormsModule, MatToolbar, RouterLink, MatButton],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title: string = '';
   bidAmount: number = 0;
-  auctions: any[] = []
 
   constructor(private router: Router) {
 
