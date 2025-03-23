@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Auction} from '../models/Auction';
-import {Web3Service} from '../web3.service';
 import {FormsModule} from '@angular/forms';
 import {AuctionitemComponent} from '../auctionitem/auctionitem.component';
 import {NgForOf, NgIf} from '@angular/common';
@@ -29,7 +28,7 @@ export class AuctionlistComponent implements OnInit {
   auctions: Auction[] = [];
   showDone: boolean = false;
 
-  constructor(private web3Service: Web3Service, private web3read: Web3ReadService) {
+  constructor(private web3read: Web3ReadService) {
   }
 
   ngOnInit(): void {
@@ -47,12 +46,11 @@ export class AuctionlistComponent implements OnInit {
             condition: auction.condition,
             startDate: auction.startDate,
             endDate: auction.endDate,
-            bids: []
+            bids: auction.bids
           }
         });
 
         const mappedAwait: Auction[] = await Promise.all(mapped);
-
 
         this.auctions = mappedAwait.filter(auction => {
           if (!this.showDone) {

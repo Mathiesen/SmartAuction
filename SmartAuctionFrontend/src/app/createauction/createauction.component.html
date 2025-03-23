@@ -42,15 +42,65 @@
                     </mat-form-field>
                 </div>
 
-                <!-- Start Date and Time -->
                 <div class="form-row">
                     <div class="date-time-header">Start Date and Time</div>
                     <div class="date-time-container">
                         <mat-form-field appearance="outline" class="date-field">
                             <mat-label>Date</mat-label>
-                            <input matInput [matDatepicker]="startDatePicker" required [(ngModel)]="startDateTime" name="startDate">
-                            <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                            <input matInput [matDatepicker]="startDatePicker"
+                            required [(ngModel)]="startDateTime" name="startDate"/>
+                            <mat-datepicker-toggle matIconSuffix [for]="startDatePicker"></mat-datepicker-toggle>
                             <mat-datepicker #startDatePicker></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="time-field">
+                            <mat-label>Time</mat-label>
+                            <input matInput
+                                   [matTimepicker]="startTimePicker"
+                                   [(ngModel)]="startDateTime"
+                                   name="endTime" />
+                            <mat-timepicker #startTimePicker></mat-timepicker>
+                            <mat-timepicker-toggle [for]="startTimePicker" matIconSuffix></mat-timepicker-toggle>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="date-time-header">End Date and Time</div>
+                    <div class="date-time-container">
+                        <mat-form-field appearance="outline" class="date-field">
+                            <mat-label>Date</mat-label>
+                            <input matInput [matDatepicker]="endDatePicker"
+                                   required [(ngModel)]="endDateTime" name="endDate"/>
+                            <mat-datepicker-toggle matIconSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                            <mat-datepicker #endDatePicker></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="time-field">
+                            <mat-label>Time</mat-label>
+                            <input matInput
+                                   [matTimepicker]="endTimePicker"
+                                   [(ngModel)]="endDateTime"
+                                   name="endTime" />
+                            <mat-timepicker #endTimePicker></mat-timepicker>
+                            <mat-timepicker-toggle [for]="endTimePicker" matIconSuffix></mat-timepicker-toggle>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- Start Date and Time
+                <div class="form-row">
+                    <div class="date-time-header">Start Date and Time</div>picker
+                    <div class="date-time-container">
+                        <mat-form-field appearance="outline" class="date-field">
+                            <mat-label>Date</mat-label>
+                            <input matInput [matDatepicker]="startDatePicker"
+                                   required [(ngModel)]="startDateTime" name="startDate" />
+                            <mat-datepicker-toggle matIconSusffix [for]="startDatePicker"></mat-datepicker-toggle>
+                            <mat-datepicker #startDatePicker></mat-datepicker>
+                            <mat-datepicker-actions>
+                                <button mat-button matDatepickerCancel>Cancel</button>
+                                <button mat-raised-button matDatepickerApply>Apply</button>
+                            </mat-datepicker-actions>
                         </mat-form-field>
 
                         <mat-form-field appearance="outline" class="time-field">
@@ -64,9 +114,9 @@
                             <mat-timepicker-toggle [for]="startTimePicker" matSuffix></mat-timepicker-toggle>
                         </mat-form-field>
                     </div>
-                </div>
+                </div>-->
 
-                <!-- End Date and Time -->
+                 <!--End Date and Time
                 <div class="form-row">
                     <div class="date-time-header">End Date and Time</div>
                     <div class="date-time-container">
@@ -88,7 +138,7 @@
                             <mat-timepicker-toggle [for]="endTimePicker" matSuffix></mat-timepicker-toggle>
                         </mat-form-field>
                     </div>
-                </div>
+                </div>-->
 
                 <div class="form-actions">
                     <button mat-button type="button" routerLink="/">Cancel</button>
@@ -100,3 +150,4 @@
         </mat-card-content>
     </mat-card>
 </div>
+

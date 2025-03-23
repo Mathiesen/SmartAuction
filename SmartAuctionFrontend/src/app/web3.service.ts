@@ -13,7 +13,7 @@ export class Web3Service {
   private web3!: Web3;
   private contract!: any;
   private isInitialized = false;
-  private address = '0x3E8c20BB9862d47544eEA81Be78Ec0E4677Fea0b';
+  private address = '0xc6c283A0E6dd101704aFC7f1B8252EC1BbA2F049';
 
   public bidPlacedEvent: Subject<void> = new Subject();
 

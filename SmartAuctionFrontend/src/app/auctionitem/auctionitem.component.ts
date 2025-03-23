@@ -14,7 +14,6 @@ import {MatButton} from '@angular/material/button';
 import {FormsModule} from '@angular/forms';
 import {Web3Service} from '../web3.service';
 import {Subscription} from 'rxjs';
-import {Router} from '@angular/router';
 import {MatDivider} from "@angular/material/divider";
 import {MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle} from "@angular/material/expansion";
 
@@ -52,7 +51,7 @@ export class AuctionitemComponent implements OnInit, OnDestroy {
   bidAmount: number = 0;
   private bidPlacedSubscription: Subscription = new Subscription;
 
-  constructor(private web3: Web3Service, private router: Router) {
+  constructor(private web3: Web3Service) {
   }
 
   ngOnDestroy(): void {

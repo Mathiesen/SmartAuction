@@ -2,38 +2,48 @@ import { Component } from '@angular/core';
 import {Web3Service} from '../web3.service';
 import {FormsModule} from '@angular/forms';
 import {Router, RouterLink} from '@angular/router';
-import {MatButton} from "@angular/material/button";
-import {MatFormField, MatInput, MatLabel} from "@angular/material/input";
-import {MatOption} from "@angular/material/core";
-import {MatSelect} from "@angular/material/select";
+
+import {MatNativeDateModule, MatOption} from "@angular/material/core";
+import {MatFormField, MatHint, MatLabel, MatSuffix} from "@angular/material/form-field";
+import {
+  MatDatepicker,
+  MatDatepickerInput,
+  MatDatepickerModule,
+  MatDatepickerToggle
+} from "@angular/material/datepicker";
+import {MatInput} from "@angular/material/input";
 import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from "@angular/material/card";
-import {MatHint} from "@angular/material/form-field";
-import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/material/datepicker";
+import {MatSelect} from "@angular/material/select";
 import {MatTimepicker, MatTimepickerInput, MatTimepickerToggle} from "@angular/material/timepicker";
+import {MatButton} from "@angular/material/button";
+
 
 @Component({
   selector: 'app-createauction',
   imports: [
     FormsModule,
-    MatButton,
-    RouterLink,
-    MatInput,
-    MatLabel,
+    MatNativeDateModule,
+    MatDatepickerModule,
     MatFormField,
-    MatOption,
-    MatSelect,
-    MatCardContent,
-    MatCardSubtitle,
-    MatCardTitle,
-    MatCardHeader,
-    MatCard,
-    MatHint,
     MatDatepickerToggle,
     MatDatepicker,
     MatDatepickerInput,
-    MatTimepickerToggle,
+    MatInput,
+    MatSuffix,
+    MatCard,
+    MatCardHeader,
+    MatCardContent,
+    MatOption,
+    MatSelect,
+    MatTimepickerInput,
     MatTimepicker,
-    MatTimepickerInput
+    MatTimepickerToggle,
+    MatButton,
+    RouterLink,
+    MatHint,
+    MatLabel,
+    MatCardTitle,
+    MatCardSubtitle
   ],
   templateUrl: './createauction.component.html',
   styleUrl: './createauction.component.css'
@@ -63,19 +73,5 @@ export class CreateauctionComponent {
     await this.web3.createAuction(this.auction).then(() => {
       this.router.navigate(['/']);
     });
-  }
-
-  formatTime(date: Date): string {
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    return `${hours}:${minutes}`;
-  }
-
-  private combineDateAndTime(date: Date, timeString: string): Date {
-    const result = new Date(date);
-    const [hours, minutes] = timeString.split(':').map(Number);
-
-    result.setHours(hours, minutes, 0, 0);
-    return result;
   }
 }
