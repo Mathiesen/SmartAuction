@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import Web3 from 'web3';
-import {ABI} from './ABI';
+import {Contract} from './contract';
 import web3 from 'web3';
 import {Bid} from './models/Bid';
 import {Subject} from 'rxjs';
@@ -13,7 +13,6 @@ export class Web3Service {
   private web3!: Web3;
   private contract!: any;
   private isInitialized = false;
-  private address = '0xAdd9aE5D6874E79fd1428972D44c427cDef81FfC';
 
   public bidPlacedEvent: Subject<void> = new Subject();
 
@@ -42,7 +41,7 @@ export class Web3Service {
       try {
         await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
         this.web3 = new Web3((window as any).ethereum);
-        this.contract = new this.web3.eth.Contract(ABI.abi, this.address);
+        this.contract = new this.web3.eth.Contract(Contract.abi, Contract.address);
         this.isInitialized = true;
       } catch (error) {
         console.error('User denied account access', error);

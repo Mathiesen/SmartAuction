@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ABI} from './ABI';
+import {Contract} from './contract';
 import {Auction} from './models/Auction';
 import Web3 from 'web3';
 import {Bid} from "./models/Bid";
@@ -10,12 +10,11 @@ import {Bid} from "./models/Bid";
 export class Web3ReadService {
   private nodeUrl = 'http://127.0.0.1:8545';
   private web3Read!: Web3;
-  private auctionAddress = '0xAdd9aE5D6874E79fd1428972D44c427cDef81FfC';
   private contract!: any;
 
   constructor() {
     this.web3Read = new Web3(this.nodeUrl);
-    this.contract = new this.web3Read.eth.Contract(ABI.abi, this.auctionAddress);
+    this.contract = new this.web3Read.eth.Contract(Contract.abi, Contract.address);
   }
 
   public async getAllAuctions(): Promise<Auction[]> {

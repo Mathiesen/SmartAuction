@@ -1,4 +1,5 @@
-export class ABI {
+export class Contract {
+  public static address = "0x6Ad05c48BdfCf3d0dcD3353052f8773dba3D5585";
   public static abi = [
     {
       "inputs": [],
