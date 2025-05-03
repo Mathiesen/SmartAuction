@@ -115,7 +115,7 @@ export class Web3Service {
   public async createAuction(auctionData: any): Promise<any> {
     const account = await this.getAccount();
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       this.contract.methods.addAuctionItem(
         auctionData.name,
         auctionData.description,
@@ -143,7 +143,7 @@ export class Web3Service {
     const account = await this.getAccount();
     const bidInWei = this.web3.utils.toWei(bidAmount.toString(), 'ether');
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       this.contract.methods.addBid(auctionAddr)
         .send({ value: bidInWei, from: account })
         .on("receipt", (receipt: any) => {
